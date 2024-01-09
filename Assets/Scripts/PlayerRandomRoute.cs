@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerRandomRoute: MonoBehaviour {
     public Transform routeFather;
     private int indexChildren;
     private Vector3 destination;
@@ -11,22 +11,11 @@ public class PlayerController : MonoBehaviour {
         GetComponent<NavMeshAgent>().SetDestination(destination);
     }
 
-    // Patrol by Waypoints
     private void Update() {
         if (Vector3.Distance(transform.position, destination) < 2.5f) {
-            indexChildren++;
-            if (indexChildren >= routeFather.childCount) indexChildren = 0;
+            indexChildren = Random.Range(0, routeFather.childCount);
             destination = routeFather.GetChild(indexChildren).position;
             GetComponent<NavMeshAgent>().SetDestination(destination);
         }
     }
-
-    // Random Route by Waypoints
-    //private void Update() {
-    //    if (Vector3.Distance(transform.position, destination) < 2.5f) {
-    //        indexChildren = Random.Range(0, routeFather.childCount);
-    //        destination = routeFather.GetChild(indexChildren).position;
-    //        GetComponent<NavMeshAgent>().SetDestination(destination);
-    //    }
-    //}
 }
