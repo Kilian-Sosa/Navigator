@@ -12,11 +12,11 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
-        if (Input.GetButtonDown("Firel")) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit = new RaycastHit();
-            if (Physics.Raycast(ray, out hit, 1000))
-                GetComponent<NavMeshAgent>().SetDestination(hit.point);
+        if (Vector3.Distance(transform.position, destination) < 2.5f) {
+            indexChildren++;
+            if (indexChildren >= routeFather.childCount) indexChildren = 0;
+            destination = routeFather.GetChild(indexChildren).position;
+            GetComponent<NavMeshAgent>().SetDestination(destination);
         }
     }
 }
