@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
         GetComponent<NavMeshAgent>().SetDestination(destination);
     }
 
+    // Patrol by Waypoints
     private void Update() {
         if (Vector3.Distance(transform.position, destination) < 2.5f) {
             indexChildren++;
@@ -19,4 +20,13 @@ public class PlayerController : MonoBehaviour {
             GetComponent<NavMeshAgent>().SetDestination(destination);
         }
     }
+
+    // Random Route by Waypoints
+    //private void Update() {
+    //    if (Vector3.Distance(transform.position, destination) < 2.5f) {
+    //        indexChildren = Random.Range(0, routeFather.childCount);
+    //        destination = routeFather.GetChild(indexChildren).position;
+    //        GetComponent<NavMeshAgent>().SetDestination(destination);
+    //    }
+    //}
 }
