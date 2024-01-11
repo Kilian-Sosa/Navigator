@@ -19,8 +19,4 @@ public class PlayerPatrol : MonoBehaviour {
             GetComponent<NavMeshAgent>().SetDestination(destination);
         }
     }
-
-    // Bounded Random Route
-
-    // Calculate a random point on the navMesh
 }
